@@ -8,7 +8,7 @@ from user import views
  
 urlpatterns = [
    
-    path('signup/', views.UserAPI.as_view()),
+    path('signup/', views.UserRegisterAPI.as_view()),
     path('login/', views.UserLoginAPI.as_view())
 ]    
 

@@ -13,7 +13,7 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 
-class UserAPI(APIView):
+class UserRegisterAPI(APIView):
     def get(self, request, format = None):
         user = User.objects.all()
         print(user)
