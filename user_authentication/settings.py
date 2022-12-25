@@ -37,9 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    'api',
     'rest_framework',
-    'user',
-    "rest_framework.authtoken"
+    "rest_framework.authtoken",
+    
+    
+
     
 ]
 
@@ -77,13 +81,23 @@ WSGI_APPLICATION = 'user_authentication.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'user',
+        'USER': 'postgres',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -123,17 +137,20 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
 # REST_FRAMEWORK = {
 #     'DEFAULT_AUTHENTICATION_CLASSES': [
-#         'rest_framework.authentication.TokenAuthentication','knox.auth.TokenAuthentication',
+#         'rest_framework.authentication.TokenAuthentication',
 #     ],
 # 'DEFAULT_PERMISSION_CLASSES': [
 #     'rest_framework.permissions.IsAuthenticated',
 # ]
 # }
 
-
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': ['rest_framework.authentication.BasicAuthentication','knox.auth.TokenAuthentication']
-# }
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+    'rest_framework.permissions.IsAuthenticated',
+    ],
+}    
